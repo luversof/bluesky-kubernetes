@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minio-deployment
+  labels:
+    app: minio
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: minio
+  template:
+    metadata:
+      labels:
+        app: minio
+    spec:
+      hostname: minio
+      
+      containers:
+      - name: minio
+        image: minio/minio:latest
+        command:
+        - /bin/bash
+        - -c
+        args: 
+        - minio server /data --console-address :9090 --address :9091
+        ports:
+        - containerPort: 9090
+        - containerPort: 9091
+        volumeMounts:
+        - name: minio-data
+          mountPath: /data
+      volumes:
+      - name: minio-data
+        hostPath:
+          path: /mnt/f/dev/data/minio-data

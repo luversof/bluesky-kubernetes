@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mariadb-deployment
+  labels:
+    app: mariadb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mariadb
+  template:
+    metadata:
+      labels:
+        app: mariadb
+    spec:
+      containers:
+      - name: mariadb
+        image: mariadb
+        ports:
+        - containerPort: 3306
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: "root"
+        args: ["--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci"]
+        volumeMounts:
+        - name: mariadb-volume
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: mariadb-volume
+        hostPath:
+          path: /mnt/f/dev/data/mariadb
+#      imagePullSecrets:
+#      - name: bluesky-secret

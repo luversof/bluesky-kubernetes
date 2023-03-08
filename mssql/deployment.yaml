@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mssql-deployment
+  labels:
+    app: mssql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mssql
+  template:
+    metadata:
+      labels:
+        app: mssql
+    spec:
+      containers:
+      - name: mssql
+        image: mcr.microsoft.com/mssql/server:2022-latest
+        ports:
+        - containerPort: 1433
+        env:
+        - name: ACCEPT_EULA
+          value: "Y"
+        - name: SA_PASSWORD
+          value: "testPassword!"
+        - name: MSSQL_COLLATION
+          value: "Korean_Wansung_CS_AS"
+        volumeMounts:
+        - name: mssql-data
+          mountPath: /var/opt/mssql/data
+        - name: mssql-log
+          mountPath: /var/opt/mssql/log
+        - name: mssql-secrets
+          mountPath: /var/opt/mssql/secrets
+      volumes:
+      - name: mssql-data
+        hostPath:
+          path: /mnt/f/dev/data/mssql-data
+      - name: mssql-log
+        hostPath:
+          path: /mnt/f/dev/data/mssql-log
+      - name: mssql-secrets
+        hostPath:
+          path: /mnt/f/dev/data/mssql-secrets
