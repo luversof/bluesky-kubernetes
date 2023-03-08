@@ -1,0 +1,168 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: bluesky-default-ingress
+  namespace: default
+spec:
+  rules:
+  - host: grafana.bluesky.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: grafana
+            port:
+              number: 3000
+  - host: jenkins.bluesky.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: jenkins-service
+            port:
+              number: 8080
+  - host: nexus.bluesky.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: nexus-service
+            port:
+              number: 8082
+  - host: minio.bluesky.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: minio-service
+            port:
+              number: 9090
+  - host: prometheus.bluesky.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: prometheus
+            port:
+              number: 9090
+  - host: eureka1.cloud.bluesky.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: bluesky-cloud-netflix-eureka-server-1-service
+            port:
+              number: 30100
+
+  - host: eureka2.cloud.bluesky.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: bluesky-cloud-netflix-eureka-server-2-service
+            port:
+              number: 30100
+  - host: config.cloud.bluesky.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: bluesky-cloud-config-server-service
+            port:
+              number: 30101
+  - host: admin.cloud.bluesky.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: bluesky-cloud-admin-server-service
+            port:
+              number: 30102
+  - host: gateway.cloud.bluesky.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: bluesky-cloud-gateway-service
+            port:
+              number: 30103
+  - host: swagger.web.bluesky.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: bluesky-web-swagger-ui-service
+            port:
+              number: 30120
+  - host: gate.web.bluesky.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: bluesky-web-gate-service
+            port:
+              number: 30122
+  - host: bookkeeping.api.bluesky.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: bluesky-api-bookkeeping-service
+            port:
+              number: 30130
+  - host: user.api.bluesky.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: bluesky-api-user-service
+            port:
+              number: 30131
+  - host: blog.api.bluesky.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: bluesky-api-blog-service
+            port:
+              number: 30132
+  - host: board.api.bluesky.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: bluesky-api-board-service
+            port:
+              number: 30133
