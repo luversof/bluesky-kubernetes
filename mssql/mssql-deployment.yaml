@@ -22,8 +22,11 @@ spec:
         env:
         - name: ACCEPT_EULA
           value: "Y"
-        - name: SA_PASSWORD
-          value: "testPassword!"
+        - name: MSSQL_SA_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: mssql-sa-password
+              name: mssql-secret
         - name: MSSQL_COLLATION
           value: "Korean_Wansung_CS_AS"
         volumeMounts:
