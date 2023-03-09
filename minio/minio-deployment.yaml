@@ -14,8 +14,7 @@ spec:
       labels:
         app: minio
     spec:
-      hostname: minio
-      
+#      hostname: minio
       containers:
       - name: minio
         image: minio/minio:latest
@@ -32,5 +31,5 @@ spec:
           mountPath: /data
       volumes:
       - name: minio-data
-        hostPath:
-          path: /mnt/f/dev/data/minio-data
+        persistentVolumeClaim:
+          claimName: minio-data-pvc

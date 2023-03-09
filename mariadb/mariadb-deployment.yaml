@@ -28,7 +28,7 @@ spec:
           mountPath: /var/lib/mysql
       volumes:
       - name: mariadb-volume
-        hostPath:
-          path: /mnt/f/dev/data/mariadb
+        persistentVolumeClaim:
+          claimName: mariadb-pvc
 #      imagePullSecrets:
 #      - name: bluesky-secret

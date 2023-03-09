@@ -35,11 +35,11 @@ spec:
           mountPath: /var/opt/mssql/secrets
       volumes:
       - name: mssql-data
-        hostPath:
-          path: /mnt/f/dev/data/mssql-data
+        persistentVolumeClaim:
+          claimName: mssql-data-pvc
       - name: mssql-log
-        hostPath:
-          path: /mnt/f/dev/data/mssql-log
+        persistentVolumeClaim:
+          claimName: mssql-log-pvc
       - name: mssql-secrets
-        hostPath:
-          path: /mnt/f/dev/data/mssql-secrets
+        persistentVolumeClaim:
+          claimName: mssql-secrets-pvc
