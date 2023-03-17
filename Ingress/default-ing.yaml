@@ -84,7 +84,7 @@ spec:
           service:
             name: minio-service
             port:
-              number: 9090
+              number: 9001  # console port임 kubernetes 이외에서 호출해서 쓸일이 있을까...
   - host: prometheus.bluesky.local
     http:
       paths:

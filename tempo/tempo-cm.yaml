@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: tempo-configmap
+data:
+  tempo.yaml: |
+    server:
+      http_listen_port: 3100
+    distributor:
+      receivers:
+        otlp:
+          protocols:
+            grpc:
+            http:
+    storage:
+      trace:
+        # backend: local                     # backend configuration to use
+        # wal:
+          # path: /tmp/tempo/wal             # where to store the the wal locally
+        # local:
+          # path: /tmp/tempo/blocks
+        backend: s3
+        s3:
+          bucket: tempo
+          endpoint: minio-service:9000
+          access_key: minio_access_key
+          secret_key: minio_secret_key
+          insecure: true

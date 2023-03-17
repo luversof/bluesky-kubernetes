@@ -22,10 +22,10 @@ spec:
         - /bin/bash
         - -c
         args: 
-        - minio server /data --console-address :9090 --address :9091
+        - minio server /data --console-address :9001
         ports:
-        - containerPort: 9090
-        - containerPort: 9091
+        - containerPort: 9000
+        - containerPort: 9001
         volumeMounts:
         - name: minio-data
           mountPath: /data
