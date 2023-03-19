@@ -35,6 +35,16 @@ spec:
             name: loki-service
             port:
               number: 3100
+  - host: promtail.bluesky.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: promtail-service
+            port:
+              number: 3101
   - host: mariadb.bluesky.local
     http:
       paths:

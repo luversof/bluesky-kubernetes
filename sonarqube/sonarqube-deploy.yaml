@@ -25,6 +25,12 @@ spec:
           mountPath: /opt/sonarqube/logs
         - name: sonarqube-extensions
           mountPath: /opt/sonarqube/extensions
+      - name: sysctl
+        image: busybox
+        securityContext:
+          privileged: true
+          runAsUser: 0
+        command: ['sh', '-c', 'sysctl -w vm.max_map_count=262144']
       containers:
       - name: sonarqube
         image: sonarqube
@@ -40,14 +46,14 @@ spec:
             secretKeyRef:
               key: mssql-sa-password
               name: mssql-secret
-        - name: STARTUP_SCRIPT
-          value: |
-            #! /bin/bash
-            sysctl -w vm.max_map_count=262144
-            sysctl -w fs.file-max=131072
-            ulimit -n 131072
-            ulimit -u 8192
-            echo "done"
+        # - name: STARTUP_SCRIPT
+          # value: |
+            # ! /bin/bash
+            # sysctl -w vm.max_map_count=262144
+            # sysctl -w fs.file-max=131072
+            # ulimit -n 131072
+            # ulimit -u 8192
+            # echo "done"
         volumeMounts:
         - name: sonarqube-data
           mountPath: /opt/sonarqube/data

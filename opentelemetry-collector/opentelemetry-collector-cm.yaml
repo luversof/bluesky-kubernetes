@@ -12,10 +12,6 @@ data:
         endpoint: tempo-service:4317
         tls:
           insecure: true
-      zipkin:
-        endpoint: http://tempo-service:9411/api/v2/spans
-        tls:
-          insecure: true
       logging:
         loglevel: info
     service:

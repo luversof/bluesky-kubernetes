@@ -14,7 +14,6 @@ spec:
       labels:
         app: minio
     spec:
-#      hostname: minio
       containers:
       - name: minio
         image: minio/minio:latest
