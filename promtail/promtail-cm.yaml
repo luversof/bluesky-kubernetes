@@ -16,7 +16,7 @@ data:
       filename: /run/promtail/positions.yaml
     target_config:
       sync_period: 10s
-    scrape_configs: 
+    scrape_configs:
     # - job_name: system
       # static_configs:
       # - targets:
@@ -25,18 +25,29 @@ data:
           # job: varlogs
           # __path__: /var/log/pods/**/*.log
     - job_name: bluesky-spring-job
+      pipeline_stages:
+      - docker: {}
       kubernetes_sd_configs:
       - role: pod
         selectors:
         - role: pod
           # field: status.phase=Running
-      # pipeline_stages:
-        # - docker: {}
       relabel_configs:
-      # - source_labels: [__meta_kubernetes_pod_container_name]
-        # action: keep
-        # regex: spring
+      - source_labels: [__meta_kubernetes_pod_container_name]
+        action: keep
+        regex: spring
+      - source_labels: [__meta_kubernetes_pod_label_app]
+        action: keep
+        regex: bluesky-web-gate
       - source_labels: [__meta_kubernetes_pod_label_app]
         target_label: application
       - source_labels: [__meta_kubernetes_pod_name]
         target_label: instance
+      - source_labels: [__meta_kubernetes_pod_container_name]
+        target_label: container
+      - replacement: /var/log/pods/*$1/*.log
+        separator: /
+        source_labels:
+        - __meta_kubernetes_pod_uid
+        - __meta_kubernetes_pod_container_name
+        target_label: __path__
