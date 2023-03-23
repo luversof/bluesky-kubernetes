@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: rabbitmq-data-pv
+  name: kibana-config-pv
   labels:
-    app: rabbitmq-data-pv
+    app: kibana-config-pv
 spec:
   storageClassName: ""
   capacity:
@@ -11,4 +11,4 @@ spec:
   accessModes:
   - ReadWriteOnce
   hostPath:
-    path: /mnt/f/dev/data/rabbitmq-data
+    path: /mnt/f/dev/data/kibana-config

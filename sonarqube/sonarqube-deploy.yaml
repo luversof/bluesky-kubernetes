@@ -15,16 +15,16 @@ spec:
         app: sonarqube
     spec:
       initContainers:
-      - name: volume-mount-hack
-        image: busybox
-        command: ["sh", "-c", "chmod -R 777 /opt/sonarqube"]
-        volumeMounts:
-        - name: sonarqube-data
-          mountPath: /opt/sonarqube/data
-        - name: sonarqube-logs
-          mountPath: /opt/sonarqube/logs
-        - name: sonarqube-extensions
-          mountPath: /opt/sonarqube/extensions
+      # - name: volume-mount-hack
+        # image: busybox
+        # command: ["sh", "-c", "chmod -R 777 /opt/sonarqube"]
+        # volumeMounts:
+        # - name: sonarqube-data
+          # mountPath: /opt/sonarqube/data
+        # - name: sonarqube-logs
+          # mountPath: /opt/sonarqube/logs
+        # - name: sonarqube-extensions
+          # mountPath: /opt/sonarqube/extensions
       - name: sysctl
         image: busybox
         securityContext:

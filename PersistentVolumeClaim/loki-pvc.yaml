@@ -6,7 +6,7 @@ spec:
   volumeName: loki-data-pv
   storageClassName: ""
   accessModes:
-    - ReadWriteOnce
+  - ReadWriteOnce
   resources:
     requests:
       storage: 2Gi

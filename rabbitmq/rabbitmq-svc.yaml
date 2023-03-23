@@ -6,10 +6,10 @@ spec:
   selector:
     app: rabbitmq
   ports:
-    - protocol: TCP
-      name: rabbitmq-port
-      port: 5672
-      targetPort: 5672
+  - protocol: TCP
+    name: rabbitmq-port
+    port: 5672
+    targetPort: 5672
   type: LoadBalancer
 ---
 apiVersion: v1
@@ -20,8 +20,8 @@ spec:
   selector:
     app: rabbitmqmanagement
   ports:
-    - protocol: TCP
-      name: rabbitmqmanagement-port
-      port: 15672
-      targetPort: 15672
+  - protocol: TCP
+    name: rabbitmqmanagement-port
+    port: 15672
+    targetPort: 15672
   type: LoadBalancer

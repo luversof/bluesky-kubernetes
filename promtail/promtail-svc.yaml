@@ -8,5 +8,5 @@ spec:
   selector: 
     app: promtail 
   ports: 
-    - port: 3101 
-      targetPort: 3101
+  - port: 3101 
+    targetPort: 3101

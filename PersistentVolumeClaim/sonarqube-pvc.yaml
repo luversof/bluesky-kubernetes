@@ -6,7 +6,7 @@ spec:
   volumeName: sonarqube-data-pv
   storageClassName: ""
   accessModes:
-    - ReadWriteOnce
+  - ReadWriteOnce
   resources:
     requests:
       storage: 2Gi
@@ -19,7 +19,7 @@ spec:
   volumeName: sonarqube-logs-pv
   storageClassName: ""
   accessModes:
-    - ReadWriteOnce
+  - ReadWriteOnce
   resources:
     requests:
       storage: 2Gi
@@ -32,7 +32,7 @@ spec:
   volumeName: sonarqube-extensions-pv
   storageClassName: ""
   accessModes:
-    - ReadWriteOnce
+  - ReadWriteOnce
   resources:
     requests:
       storage: 2Gi

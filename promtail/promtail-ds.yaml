@@ -33,7 +33,7 @@ spec:
           readOnly: true
         - name: promtail-pods
           mountPath: /var/log/pods
-          readOnly: true
+          # readOnly: true
       volumes:
       - name: promtail-config
         configMap:

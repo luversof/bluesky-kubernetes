@@ -5,7 +5,7 @@ metadata:
 data:
   promtail.yaml: |
     server:
-      enable_runtime_reload: true
+      # enable_runtime_reload: true
       log_level: info
       http_listen_port: 3101
     
@@ -25,8 +25,8 @@ data:
           # job: varlogs
           # __path__: /var/log/pods/**/*.log
     - job_name: bluesky-spring-job
-      pipeline_stages:
-      - docker: {}
+      # pipeline_stages:
+      # - docker: {}
       kubernetes_sd_configs:
       - role: pod
         selectors:

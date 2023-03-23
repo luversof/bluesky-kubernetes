@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: redis-data-pvc
+  name: kibana-config-pvc
 spec:
-  volumeName: redis-data-pv
+  volumeName: kibana-config-pv
   storageClassName: ""
   accessModes:
   - ReadWriteOnce

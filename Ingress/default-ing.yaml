@@ -55,6 +55,16 @@ spec:
             name: mariadb-service
             port:
               number: 3306
+  - host: kibana.bluesky.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: kibana-service
+            port:
+              number: 5601
   - host: jenkins.bluesky.local
     http:
       paths:
@@ -105,6 +115,16 @@ spec:
             name: prometheus-service
             port:
               number: 9090
+  - host: elasticsearch.bluesky.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: elasticsearch-service
+            port:
+              number: 9200
   - host: opentelemetry-collector.bluesky.local
     http:
       paths:

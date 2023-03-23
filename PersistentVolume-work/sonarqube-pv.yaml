@@ -9,7 +9,7 @@ spec:
   capacity:
     storage: 2Gi
   accessModes:
-    - ReadWriteOnce
+  - ReadWriteOnce
   hostPath:
     path: /mnt/c/data/sonarqube-data
 ---
@@ -24,7 +24,7 @@ spec:
   capacity:
     storage: 2Gi
   accessModes:
-    - ReadWriteOnce
+  - ReadWriteOnce
   hostPath:
     path: /mnt/c/data/sonarqube-logs
 ---
@@ -39,6 +39,6 @@ spec:
   capacity:
     storage: 2Gi
   accessModes:
-    - ReadWriteOnce
+  - ReadWriteOnce
   hostPath:
     path: /mnt/c/data/sonarqube-extensions

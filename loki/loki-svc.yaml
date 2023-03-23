@@ -8,5 +8,5 @@ spec:
   selector: 
     app: loki 
   ports: 
-    - port: 3100 
-      targetPort: 3100
+  - port: 3100 
+    targetPort: 3100

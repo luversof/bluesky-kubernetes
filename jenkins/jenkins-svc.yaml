@@ -6,12 +6,12 @@ spec:
   selector:
     app: jenkins
   ports:
-    - protocol: TCP
-      name: jenkins-port
-      port: 8080
-      targetPort: 8080
-    - protocol: TCP
-      name: jenkins-slave-agent-port
-      port: 50000
-      targetPort: 50000
+  - protocol: TCP
+    name: jenkins-port
+    port: 8080
+    targetPort: 8080
+  - protocol: TCP
+    name: jenkins-slave-agent-port
+    port: 50000
+    targetPort: 50000
 #  type: LoadBalancer
