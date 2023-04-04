@@ -29,6 +29,13 @@ spec:
               name: mssql-secret
         - name: MSSQL_COLLATION
           value: "Korean_Wansung_CS_AS"
+        resources:
+          requests:
+#            cpu: '500m'
+            memory: '512Mi'
+          limits:
+#            cpu: '500m'
+            memory: '512Mi'
         volumeMounts:
         - name: mssql-data
           mountPath: /var/opt/mssql/data

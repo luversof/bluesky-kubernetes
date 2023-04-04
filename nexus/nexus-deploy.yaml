@@ -23,6 +23,13 @@ spec:
         ports:
         - containerPort: 8081
         - containerPort: 8083
+        resources:
+          requests:
+            cpu: '1'
+            memory: '512Mi'
+          limits:
+            cpu: '2'
+            memory: '1024Mi'
         volumeMounts:
         - name: nexus-data
           mountPath: /nexus-data

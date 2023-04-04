@@ -54,6 +54,13 @@ spec:
             # ulimit -n 131072
             # ulimit -u 8192
             # echo "done"
+        resources:
+          requests:
+#            cpu: '500m'
+            memory: '256Mi'
+          limits:
+#            cpu: '1'
+            memory: '512Mi'
         volumeMounts:
         - name: sonarqube-data
           mountPath: /opt/sonarqube/data
