@@ -65,6 +65,16 @@ spec:
             name: kibana-service
             port:
               number: 5601
+  - host: redis.bluesky.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: kibana-service
+            port:
+              number: 6379
   - host: jenkins.bluesky.local
     http:
       paths:
@@ -75,6 +85,26 @@ spec:
             name: jenkins-service
             port:
               number: 8080
+  - host: smocker.bluesky.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: smocker-service
+            port:
+              number: 8080
+  - host: smocker-ui.bluesky.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: smocker-service
+            port:
+              number: 8081
   - host: nexus.bluesky.local
     http:
       paths:

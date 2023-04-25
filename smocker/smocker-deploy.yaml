@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: smocker-deployment
+  labels:
+    app: smocker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: smocker
+  template:
+    metadata:
+      labels:
+        app: smocker
+    spec:
+      containers:
+      - name: smocker
+        image: thiht/smocker:latest
+        ports:
+        - containerPort: 8080
+        - containerPort: 8081
+#        volumeMounts:
+#        - name: smocker-data
+#          mountPath: /data
+#      volumes:
+#      - name: smocker-data
+#        persistentVolumeClaim:
+#          claimName: smocker-data-pvc
