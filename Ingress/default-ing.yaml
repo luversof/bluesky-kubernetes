@@ -105,6 +105,16 @@ spec:
             name: smocker-service
             port:
               number: 8081
+  - host: wiremock.bluesky.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: wiremock-service
+            port:
+              number: 8080
   - host: nexus.bluesky.local
     http:
       paths:
@@ -163,6 +173,16 @@ spec:
         backend:
           service:
             name: opentelemetry-collector-service
+            port:
+              number: 9411
+  - host: zipkin.bluesky.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: zipkin-service
             port:
               number: 9411
   - host: eureka1.cloud.bluesky.local

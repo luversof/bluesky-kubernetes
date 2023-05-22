@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: wiremock-service
+spec:
+  selector:
+    app: wiremock
+  ports:
+  - protocol: TCP
+    name: wiremock-port
+    port: 8080
+    targetPort: 8080

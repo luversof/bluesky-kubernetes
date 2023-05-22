@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wiremock-deployment
+  labels:
+    app: wiremock
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wiremock
+  template:
+    metadata:
+      labels:
+        app: wiremock
+    spec:
+      containers:
+      - name: wiremock
+        image: wiremock/wiremock:latest
+        ports:
+        - containerPort: 8080
+#        volumeMounts:
+#        - name: wiremock-data
+#          mountPath: /data
+#      volumes:
+#      - name: wiremock-data
+#        persistentVolumeClaim:
+#          claimName: wiremock-data-pvc

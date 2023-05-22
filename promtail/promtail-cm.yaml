@@ -36,16 +36,16 @@ data:
       - source_labels: [__meta_kubernetes_pod_container_name]
         action: keep
         regex: spring
-      - source_labels: [__meta_kubernetes_pod_label_app]
-        action: keep
-        regex: bluesky-web-gate
+      # - source_labels: [__meta_kubernetes_pod_label_app]
+        # action: keep
+        # regex: bluesky-web-gate
       - source_labels: [__meta_kubernetes_pod_label_app]
         target_label: application
       - source_labels: [__meta_kubernetes_pod_name]
         target_label: instance
       - source_labels: [__meta_kubernetes_pod_container_name]
         target_label: container
-      - replacement: /var/log/pods/*$1/*.log
+      - replacement: /var/log/pods/*$1/0.log
         separator: /
         source_labels:
         - __meta_kubernetes_pod_uid
