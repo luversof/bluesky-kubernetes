@@ -19,9 +19,10 @@ spec:
         image: openzipkin/zipkin:latest
         ports:
         - containerPort: 9411
-        args: 
-#        - "--STORAGE_TYPE=elasticsearch"
-#        - "--ES_HOSTS=http://elasticsearch-service:9200"
+#        args: 
+#        - "--STORAGE_TYPE=cassandra3"
+#        - "--CASSANDRA_CONTACT_POINTS=cassandra-service:9042"
+#          https://github.com/openzipkin/zipkin/issues/3412 cassandra schema가 하나 누락된 것 같음
 #        - "--ES_USERNAME=bluesky"
 #        - "--ES_PASSWORD=bluesky"
 #        volumeMounts:
