@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: scdf-service
+  labels:
+    app: scdf
+#    spring-deployment-id: scdf
+spec:
+  selector:
+    app: scdf
+#  type: LoadBalancer
+  ports:
+    - port: 9393
+      name: scdf-server

@@ -22,6 +22,8 @@ spec:
         volumeMounts:
         - name: mongo-volume
           mountPath: /data/db
+        securityContext:
+          allowPrivilegeEscalation: false
       volumes:
       - name: mongo-volume
         persistentVolumeClaim:

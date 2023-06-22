@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mockoon-deployment
+  labels:
+    app: mockoon
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mockoon
+  template:
+    metadata:
+      labels:
+        app: mockoon
+    spec:
+      containers:
+      - name: mockoon
+        image: mockoon/cli:latest
+#        args: ["--mount", "type=bind,source=https://raw.githubusercontent.com/mockoon/mock-samples/main/samples/generate-mock-data.json,target=/data", "--data", "data"]
+        args: ["--port", "3000", "--data", "https://raw.githubusercontent.com/mockoon/mock-samples/main/samples/generate-mock-data.json"]
+        ports:
+        - containerPort: 3000
+#        volumeMounts:
+#        - name: smocker-data
+#          mountPath: /data
+#      volumes:
+#      - name: smocker-data
+#        persistentVolumeClaim:
+#          claimName: smocker-data-pvc

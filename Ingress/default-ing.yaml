@@ -5,16 +5,16 @@ metadata:
   namespace: default
 spec:
   rules:
-  - host: mssql.bluesky.local
+  - host: elasticsearch.bluesky.local
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: mssql-service
+            name: elasticsearch-service
             port:
-              number: 1433
+              number: 9200
   - host: grafana.bluesky.local
     http:
       paths:
@@ -25,56 +25,6 @@ spec:
             name: grafana-service
             port:
               number: 3000
-  - host: loki.bluesky.local
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: loki-service
-            port:
-              number: 3100
-  - host: promtail.bluesky.local
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: promtail-service
-            port:
-              number: 3101
-  - host: mariadb.bluesky.local
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: mariadb-service
-            port:
-              number: 3306
-  - host: kibana.bluesky.local
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: kibana-service
-            port:
-              number: 5601
-  - host: redis.bluesky.local
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: kibana-service
-            port:
-              number: 6379
   - host: jenkins.bluesky.local
     http:
       paths:
@@ -85,6 +35,176 @@ spec:
             name: jenkins-service
             port:
               number: 8080
+  - host: kibana.bluesky.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: kibana-service
+            port:
+              number: 5601
+  - host: loki.bluesky.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: loki-service
+            port:
+              number: 3100
+  - host: mariadb.bluesky.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: mariadb-service
+            port:
+              number: 3306
+  - host: minio.bluesky.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: minio-service
+            port:
+              number: 9001  # console port임 kubernetes 이외에서 호출해서 쓸일이 있을까...
+  - host: mockoon.bluesky.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: mockoon-service
+            port:
+              number: 3000
+  - host: mongo.bluesky.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: mongo-service
+            port:
+              number: 27017
+  - host: mssql.bluesky.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: mssql-service
+            port:
+              number: 1433
+  - host: nexus.bluesky.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: nexus-service
+            port:
+              number: 8082
+  - host: opentelemetry-collector.bluesky.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: opentelemetry-collector-service
+            port:
+              number: 9411
+  - host: postgres.bluesky.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: postgres-service
+            port:
+              number: 5432
+  - host: prometheus.bluesky.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: prometheus-service
+            port:
+              number: 9090
+  - host: promtail.bluesky.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: promtail-service
+            port:
+              number: 3101
+  - host: rabbitmq.bluesky.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: rabbitmq-service
+            port:
+              number: 5672
+  - host: rabbitmqmanagement.bluesky.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: rabbitmq-service
+            port:
+              number: 15672
+  - host: redis.bluesky.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: kibana-service
+            port:
+              number: 6379
+  - host: scdf.bluesky.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: scdf-service
+            port:
+              number: 9393
+  - host: skipper.bluesky.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: skipper-service
+            port:
+              number: 7577
   - host: smocker.bluesky.local
     http:
       paths:
@@ -105,26 +225,6 @@ spec:
             name: smocker-service
             port:
               number: 8081
-  - host: wiremock.bluesky.local
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: wiremock-service
-            port:
-              number: 8080
-  - host: nexus.bluesky.local
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: nexus-service
-            port:
-              number: 8082
   - host: sonarqube.bluesky.local
     http:
       paths:
@@ -135,46 +235,16 @@ spec:
             name: sonarqube-service
             port:
               number: 9000
-  - host: minio.bluesky.local
+  - host: wiremock.bluesky.local
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: minio-service
+            name: wiremock-service
             port:
-              number: 9001  # console port임 kubernetes 이외에서 호출해서 쓸일이 있을까...
-  - host: prometheus.bluesky.local
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: prometheus-service
-            port:
-              number: 9090
-  - host: elasticsearch.bluesky.local
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: elasticsearch-service
-            port:
-              number: 9200
-  - host: opentelemetry-collector.bluesky.local
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: opentelemetry-collector-service
-            port:
-              number: 9411
+              number: 8080
   - host: zipkin.bluesky.local
     http:
       paths:
@@ -185,37 +255,6 @@ spec:
             name: zipkin-service
             port:
               number: 9411
-  - host: eureka1.cloud.bluesky.local
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: bluesky-cloud-netflix-eureka-server-1-service
-            port:
-              number: 30100
-
-  - host: eureka2.cloud.bluesky.local
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: bluesky-cloud-netflix-eureka-server-2-service
-            port:
-              number: 30100
-  - host: config.cloud.bluesky.local
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: bluesky-cloud-config-server-service
-            port:
-              number: 30101
   - host: admin.cloud.bluesky.local
     http:
       paths:
@@ -226,6 +265,36 @@ spec:
             name: bluesky-cloud-admin-server-service
             port:
               number: 30102
+  - host: config.cloud.bluesky.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: bluesky-cloud-config-server-service
+            port:
+              number: 30101
+  - host: eureka1.cloud.bluesky.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: bluesky-cloud-netflix-eureka-server-1-service
+            port:
+              number: 30100
+  - host: eureka2.cloud.bluesky.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: bluesky-cloud-netflix-eureka-server-2-service
+            port:
+              number: 30100
   - host: gateway.cloud.bluesky.local
     http:
       paths:

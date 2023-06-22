@@ -1,0 +1,121 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scdf-deployment
+  labels:
+    app: scdf
+spec:
+  selector:
+    matchLabels:
+      app: scdf
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: scdf
+    spec:
+      containers:
+        - name: scdf
+          image: springcloud/spring-cloud-dataflow-server:2.10.4-SNAPSHOT
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: config
+              mountPath: /workspace/config
+              readOnly: true
+#            - name: database
+#              mountPath: /etc/secrets/database
+#              readOnly: true
+          ports:
+            - containerPort: 9393
+              name: http
+          livenessProbe:
+            httpGet:
+              path: /management/health
+              port: 9393
+            initialDelaySeconds: 1
+          readinessProbe:
+            httpGet:
+              path: /management/info
+              port: 9393
+            initialDelaySeconds: 1
+          startupProbe:
+            tcpSocket:
+              port: 9393
+            failureThreshold: 10
+            initialDelaySeconds: 50
+            timeoutSeconds: 2
+            periodSeconds: 3
+          resources:
+            requests:
+              cpu: 0.5
+              memory: 1024Mi
+          env:
+            - name: LANG
+              value: en_US.utf8
+            - name: LC_ALL
+              value: en_US.utf8
+            - name: JDK_JAVA_OPTIONS
+              value: '-Dfile.encoding=UTF-8 -Dsun.jnu.encoding=UTF-8'
+            - name: KUBERNETES_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: "metadata.namespace"
+            - name: SPRING_PROFILES_ACTIVE
+              value: 'kubernetes'
+            - name: SERVER_PORT
+              value: '9393'
+            - name: SPRING_CLOUD_CONFIG_ENABLED
+              value: 'false'
+            - name: SPRING_CLOUD_DATAFLOW_FEATURES_ANALYTICS_ENABLED
+              value: 'true'
+            - name: SPRING_CLOUD_DATAFLOW_FEATURES_SCHEDULES_ENABLED
+              value: 'true'
+            - name: SPRING_CLOUD_DATAFLOW_TASK_COMPOSEDTASKRUNNER_URI
+              value: 'docker://springcloud/spring-cloud-dataflow-composed-task-runner:2.10.4-SNAPSHOT'
+            - name: SPRING_CLOUD_KUBERNETES_CONFIG_ENABLE_API
+              value: 'false'
+            - name: SPRING_CLOUD_KUBERNETES_SECRETS_ENABLE_API
+              value: 'false'
+            - name: SPRING_CLOUD_KUBERNETES_SECRETS_PATHS
+              value: /etc/secrets
+            - name: SPRING_CLOUD_DATAFLOW_SERVER_URI
+              value: 'http://scdf-service:9393'
+              # Provide the Skipper service location
+            - name: SPRING_CLOUD_SKIPPER_CLIENT_SERVER_URI
+              value: 'http://skipper-service:7577/api'
+              # Add Maven repo for metadata artifact resolution for all stream apps
+            - name: SPRING_APPLICATION_JSON
+              value: "{ \"maven\": { \"local-repository\": null, \"remote-repositories\": { \"central\": { \"url\": \"https://repo.maven.apache.org/maven2\" }, \"repo1\": { \"url\": \"https://repo.spring.io/snapshot\"} } } }"
+            - name: SPRING_DATASOURCE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  key: postgres-user
+                  name: postgres-secret
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: postgres-password
+                  name: postgres-secret
+            - name: SPRING_DATASOURCE_URL
+              value: 'jdbc:postgresql://postgres-service:5432/spring_skipper'
+            - name: SPRING_DATASOURCE_DRIVER_CLASS_NAME
+              value: 'org.postgresql.Driver'
+            - name: SPRING_DATASOURCE_TEST_ON_BORROW
+              value: 'true'
+            - name: SPRING_DATASOURCE_VALIDATION_QUERY
+              value: 'SELECT 1'
+            - name: SPRING_DATASOURCE_HIKARI_DATA_SOURCE_PROPERTIES_USE_UNICODE
+              value: 'true'
+            - name: SPRING_DATASOURCE_HIKARI_DATA_SOURCE_PROPERTIES_CHARACTER_ENCODING
+              value: 'UTF-8'
+#      serviceAccountName: scdf-sa
+      volumes:
+        - name: config
+          configMap:
+            name: scdf-configmap
+            items:
+              - key: 'application-kubernetes.yaml'
+                path: 'application-kubernetes.yaml'
+#        - name: database
+#          secret:
+#            secretName: ${DATABASE}

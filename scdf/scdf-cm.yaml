@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: scdf-configmap
+  labels:
+    app: scdf
+data:
+  application-kubernetes.yaml: |-
+    logging:
+      level:
+        root: info
+        org.springframework: debug
+    management:
+      defaults:
+        metrics:
+          export:
+            enabled: false
+    spring:
+      output:
+        ansi:
+          enabled: NEVER
+      cloud:
+        deployer:
+          kubernetes:
+            imagePullPolicy: IfNotPresent
+            imagePullSecret: regcred
+        dataflow:
+          metrics.dashboard:
+            url: 'http://scdf.bluesky.local'
+          task:
+            platform:
+              kubernetes:
+                accounts:
+                  default:
+                    imagePullPolicy: IfNotPresent
+                    imagePullSecret: registry-key
+                    limits:
+                      memory: 1024Mi
+    maven:
+      remote-repositories:
+        repo1:
+          url: http://nexus-service:8082/repository/maven-public
