@@ -68,8 +68,8 @@ spec:
             value: 'false'
           - name: SPRING_CLOUD_KUBERNETES_SECRETS_ENABLE_API
             value: 'false'
-#          - name: SPRING_CLOUD_KUBERNETES_SECRETS_PATHS
-#            value: /etc/secrets
+          - name: SPRING_CLOUD_KUBERNETES_SECRETS_PATHS
+            value: /etc/secrets
           - name: SPRING_DATASOURCE_USERNAME
             valueFrom:
               secretKeyRef:
