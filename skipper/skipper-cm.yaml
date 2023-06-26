@@ -18,7 +18,7 @@ data:
       cloud:
         deployer:
           kubernetes:
-            imagePullPolicy: IfNotPresent
+            imagePullPolicy: Always
             imagePullSecret:
               -name: regcred
         skipper:
@@ -27,7 +27,7 @@ data:
               kubernetes:
                 accounts:
                   default:
-                    imagePullPolicy: IfNotPresent
+                    imagePullPolicy: Always
                     imagePullSecret:
                       -name: regcred
                     environmentVariables: 'LANG=en_US.utf8,LC_ALL=en_US.utf8,JDK_JAVA_OPTIONS=-Dfile.encoding=UTF-8 -Dsun.jnu.encoding=UTF-8,SPRING_CLOUD_CONFIG_ENABLED=false,SPRING_RABBITMQ_HOST=rabbitmq-service,SPRING_RABBITMQ_PORT=5672'

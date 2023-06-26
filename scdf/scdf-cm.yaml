@@ -22,7 +22,7 @@ data:
       cloud:
         deployer:
           kubernetes:
-            imagePullPolicy: IfNotPresent
+            imagePullPolicy: Always
             imagePullSecret: regcred
         dataflow:
           metrics.dashboard:
@@ -32,8 +32,8 @@ data:
               kubernetes:
                 accounts:
                   default:
-                    imagePullPolicy: IfNotPresent
-                    imagePullSecret: registry-key
+                    imagePullPolicy: Always
+                    imagePullSecret: regcred
                     limits:
                       memory: 1024Mi
     maven:
