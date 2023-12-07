@@ -22,9 +22,6 @@ spec:
             - name: config
               mountPath: /workspace/config
               readOnly: true
-#            - name: database
-#              mountPath: /etc/secrets/database
-#              readOnly: true
           ports:
             - containerPort: 9393
               name: http
@@ -108,7 +105,6 @@ spec:
               value: 'true'
             - name: SPRING_DATASOURCE_HIKARI_DATA_SOURCE_PROPERTIES_CHARACTER_ENCODING
               value: 'UTF-8'
-#      serviceAccountName: scdf-sa
       volumes:
         - name: config
           configMap:
@@ -116,6 +112,3 @@ spec:
             items:
               - key: 'application-kubernetes.yaml'
                 path: 'application-kubernetes.yaml'
-#        - name: database
-#          secret:
-#            secretName: ${DATABASE}

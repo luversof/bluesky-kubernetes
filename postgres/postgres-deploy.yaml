@@ -30,7 +30,6 @@ spec:
             secretKeyRef:
               key: postgres-password
               name: postgres-secret
-#        args: ["--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci"]
         volumeMounts:
         - name: postgres-volume
           mountPath: /var/lib/postgresql/data
