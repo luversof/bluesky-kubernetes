@@ -4,4 +4,5 @@ MAINTAINER bluesky <bluesky@ncsoft.com>
 USER root
 RUN curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh 
 RUN usermod -aG docker jenkins 
+RUN apt install yq -y
 USER jenkins
