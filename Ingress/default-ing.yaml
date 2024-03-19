@@ -55,16 +55,6 @@ spec:
             name: loki-service
             port:
               number: 3100
-  - host: minio.bluesky.local
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: minio-service
-            port:
-              number: 9001  # console port임 kubernetes 이외에서 호출해서 쓸일이 있을까...
   - host: mockoon.bluesky.local
     http:
       paths:
@@ -75,36 +65,6 @@ spec:
             name: mockoon-service
             port:
               number: 3000
-  - host: mongo.bluesky.local
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: mongo-service
-            port:
-              number: 27017
-  - host: mssql.bluesky.local
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: mssql-service
-            port:
-              number: 1433
-  - host: nexus.bluesky.local
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: nexus-service
-            port:
-              number: 8082
   - host: opentelemetry-collector.bluesky.local
     http:
       paths:
@@ -115,16 +75,6 @@ spec:
             name: opentelemetry-collector-service
             port:
               number: 9411
-  - host: postgres.bluesky.local
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: postgres-service
-            port:
-              number: 5432
   - host: prometheus.bluesky.local
     http:
       paths:
@@ -145,36 +95,6 @@ spec:
             name: promtail-service
             port:
               number: 3101
-  - host: rabbitmq.bluesky.local
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: rabbitmq-service
-            port:
-              number: 5672
-  - host: rabbitmqmanagement.bluesky.local
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: rabbitmq-service
-            port:
-              number: 15672
-  - host: redis.bluesky.local
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: kibana-service
-            port:
-              number: 6379
   - host: scdf.bluesky.local
     http:
       paths:
