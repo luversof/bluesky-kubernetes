@@ -55,16 +55,6 @@ spec:
             name: loki-service
             port:
               number: 3100
-  - host: mariadb.bluesky.local
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: mariadb-service
-            port:
-              number: 3306
   - host: minio.bluesky.local
     http:
       paths:
@@ -255,3 +245,4 @@ spec:
             name: zipkin-service
             port:
               number: 9411
+        
