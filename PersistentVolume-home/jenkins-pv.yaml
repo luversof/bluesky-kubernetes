@@ -1,24 +1,9 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: jenkins-docker-sock-pv
+  name: jenkins-docker-config-pv
   labels:
-    app: jenkins-docker-sock-pv
-spec:
-  storageClassName: ""
-  capacity:
-    storage: 2Gi
-  accessModes:
-  - ReadWriteOnce
-  hostPath:
-    path: /var/run/docker.sock
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: jenkins-docker-pv
-  labels:
-    app: jenkins-docker-pv
+    app: jenkins-docker-config-pv
 spec:
   storageClassName: ""
   capacity:
