@@ -15,16 +15,6 @@ spec:
             name: elasticsearch-service
             port:
               number: 9200
-  - host: grafana.bluesky.local
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: grafana-service
-            port:
-              number: 3000
   - host: kibana.bluesky.local
     http:
       paths:
@@ -55,16 +45,6 @@ spec:
             name: mockoon-service
             port:
               number: 3000
-  - host: opentelemetry-collector.bluesky.local
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: opentelemetry-collector-service
-            port:
-              number: 9411
   - host: prometheus.bluesky.local
     http:
       paths:
@@ -145,14 +125,3 @@ spec:
             name: wiremock-service
             port:
               number: 8080
-  - host: zipkin.bluesky.local
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: zipkin-service
-            port:
-              number: 9411
-        
