@@ -45,16 +45,6 @@ spec:
             name: mockoon-service
             port:
               number: 3000
-  - host: prometheus.bluesky.local
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: prometheus-service
-            port:
-              number: 9090
   - host: promtail.bluesky.local
     http:
       paths:
