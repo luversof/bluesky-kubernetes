@@ -1,0 +1,1 @@
+call kubectl -n argocd apply -f .
