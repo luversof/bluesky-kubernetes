@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: homeassistant-deployment
+  labels:
+    app: homeassistant
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: homeassistant
+  template:
+    metadata:
+      labels:
+        app: homeassistant
+    spec:
+      containers:
+      - name: homeassistant
+        image: ghcr.io/home-assistant/home-assistant:stable
+        env:
+#        - name: PYTHONHTTPSVERIFY
+#          value: "0"
+        ports:
+        - containerPort: 8123
+        resources:
+          requests:
+#            cpu: '1'
+            memory: '1024Mi'
+          limits:
+#            cpu: '1'
+            memory: '1024Mi'
+        securityContext:
+          privileged: true
+          runAsUser: 0
+        volumeMounts:
+        - name: localtime
+          mountPath: /etc/localtime:ro
+        - name: dbus
+          mountPath: /run/dbus:ro
+        - name: homeassistant-config
+          mountPath: /config
+      volumes:
+      - name: localtime
+        hostPath:
+          path: /etc/localtime
+      - name: dbus
+        hostPath:
+          path: /run/dbus
+      - name: homeassistant-config
+        persistentVolumeClaim: 
+          claimName: homeassistant-config-pvc
+

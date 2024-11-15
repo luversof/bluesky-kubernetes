@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: matter-server-deployment
+  labels:
+    app: matter-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: matter-server
+  template:
+    metadata:
+      labels:
+        app: matter-server
+    spec:
+      containers:
+      - name: matter-server
+        image: ghcr.io/home-assistant-libs/python-matter-server:stable
+        env:
+        ports:
+        - containerPort: 5580
+        resources:
+          requests:
+#            cpu: '1'
+            memory: '1024Mi'
+          limits:
+#            cpu: '1'
+            memory: '1024Mi'
+#        securityContext:
+#          privileged: true
+#          runAsUser: 0
+        volumeMounts:
+#        - name: localtime
+#          mountPath: /etc/localtime:ro
+        - name: dbus
+          mountPath: /run/dbus:ro
+        - name: matter-server-data
+          mountPath: /data
+      volumes:
+#      - name: localtime
+#        hostPath:
+#          path: /etc/localtime
+      - name: dbus
+        hostPath:
+          path: /run/dbus
+      - name: matter-server-data
+        persistentVolumeClaim: 
+          claimName: matter-server-data-pvc
+

@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: homeassistant-config-pv
+  labels:
+    app: homeassistant-config-pv
+spec:
+  storageClassName: ""
+  capacity:
+    storage: 2Gi
+  accessModes:
+  - ReadWriteOnce
+  hostPath:
+# work
+    path: /mnt/c/data/homeassistant-config
+# home
+#    path: /mnt/f/dev/data/homeassistant-config
