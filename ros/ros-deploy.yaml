@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ros-deployment
+  labels:
+    app: ros
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ros
+  template:
+    metadata:
+      labels:
+        app: ros
+    spec:
+      containers:
+      - name: ros
+        image: ros
+        command: ["/bin/bash", "-c"]
+        args:
+        - echo "source /ros_entrypoint.sh" >> ~/.bashrc && source ~/.bashrc && tail -f /dev/null
