@@ -1,0 +1,1 @@
+call helm uninstall hoppscotch --namespace opensource
