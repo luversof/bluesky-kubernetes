@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    app.kubernetes.io/name: argocd-cm
+    app.kubernetes.io/part-of: argocd
+  name: argocd-cm
+data:
+  resource.customizations: |
+    autoscaling/HorizontalPodAutoscaler:
+      ignoreDifferences: |
+        jsonPointers:
+          - /status
+          - /metadata/annotations
