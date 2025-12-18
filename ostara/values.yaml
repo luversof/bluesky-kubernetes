@@ -1,0 +1,27 @@
+ingress:
+  enabled: true
+  hosts:
+     - host: ostara.bluesky.local
+       paths:
+         - path: /
+           pathType: ImplementationSpecific
+  tls:
+    - secretName: tls-secret
+      hosts:
+        - ostara.bluesky.local
+
+securityContext:
+  allowPrivilegeEscalation: false
+
+resources:
+  limits:
+    cpu: "1"
+    memory: "1Gi"
+  requests:
+    cpu: "200m"
+    memory: "512Mi"
+    
+discovery:
+  namespaces:
+    - default
+    - opensource
